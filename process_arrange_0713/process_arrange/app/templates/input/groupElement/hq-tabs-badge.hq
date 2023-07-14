@@ -1,0 +1,36 @@
+<hqTemplate>    <el-tabs v-model="{{ active_name }}" {% if tab_position %}tab-position="{{ tab_position }}"{% endif %} type="card" {% if js_function_name %}@tab-click="{{ js_function_name }}"{% endif %}>{% for sub_element in sub_elements %}
+      <el-tab-pane name="{{ sub_element.name }}">
+        <span slot="label">
+            {{ sub_element.label }}
+            <i class="el-icon-question"></i>
+            <el-badge {% if show_badge %}v-if="{{ show_badge }}"{% endif %} {% if badge_value %}:value="{{ sub_element.badge_value }}"{% endif %}></el-badge>
+        </span>
+        {% if sub_element.page_name %}<{{ sub_element.page_name }}/>{% else %}{{ sub_element.element_key }}{% endif %}
+      </el-tab-pane>{% endfor %}
+    </el-tabs>
+</hqTemplate>
+<script>
+<hqImport>{% for sub_element in sub_elements %}{% if sub_element.page_name %}import {{ sub_element.page_name }} from '{{ sub_element.page_path }}'
+{% endif %}{% endfor %}</hqImport>
+export default {
+  components: {<hqComponents>{% for sub_element in sub_elements %}{% if sub_element.page_name %}
+    {{ sub_element.page_name }},{% endif %}{% endfor %}</hqComponents>
+  },
+  data() {
+    return {<hqData>
+      {{ active_name }}: '{{ sub_elements.0.name }}',</hqData>
+    };
+  },
+  methods: {<hqMethods>
+    {% if js_function_name %}{{ js_function_name }}(tab, event) {
+      {% if js_function_content %}{{ js_function_content|safe }}{% endif %}
+    },{% endif %}</hqMethods>
+  }
+};
+</script>
+{# 必填配置项
+{"active_name":"","sub_elements":[{"name":"","label":""}]}
+#}
+{# 选填配置项
+{"tab_position":"top","show_badge":"true","js_function_name":"","js_function_content":"","sub_elements":[{"element_key":"uuid","page_name":"子组件名","page_path":"子组件路径"},{"element":"组件名","element_key":"uuid","page_area":"hqSelectArea"}]}
+#}

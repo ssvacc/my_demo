@@ -1,0 +1,36 @@
+<hqTemplate>    <el-pagination id="{{ pagination_id }}"
+         @size-change="handleSizeChange"
+         @current-change="handleCurrentChange"
+         :current-page.sync="pageNo"
+         :page-sizes="[10, 100]"
+         :page-size="pageSize"
+         :total="total" background
+         layout="total, sizes, prev, pager, next">
+    </el-pagination>
+</hqTemplate>
+<script>
+export default {
+  data() {
+    return {<hqData>
+      pageNo: 1,
+      pageSize: 10,
+      total: 0,</hqData>
+    }
+  },
+  methods: {<hqMethods>
+    // 调整分页数据大小
+    handleSizeChange(newSize) {
+      this.pageSize = newSize;
+      this.{{ js_function_name }}();
+    },
+    // 调整当前页码
+    handleCurrentChange(newPage) {
+      this.pageNo = newPage;
+      this.{{ js_function_name }}();
+    },</hqMethods>
+  },
+}
+</script>
+{# 必填配置项
+{"pagination_id": "","js_function_name":""}
+#}

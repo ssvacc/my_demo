@@ -1,0 +1,11 @@
+<hqTemplate>    <span id='{{ text_id }}'>{{ content|safe }}</span>
+</hqTemplate>
+<style scope><hqStyle>
+#{{ text_id }} {
+  margin-left: 10px;
+  margin-right: 10px;
+}</hqStyle>
+</style>
+{# 必填配置项
+{"text_id":"","content":""}
+#}

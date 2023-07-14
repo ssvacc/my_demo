@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+
+
+  <div id="app">
+    <template>
+  <div id="test_page">
+    <div id="temp_select" style="margin: 20px">
+<el-row :gutter="10">
+<el-col :span="24">
+<div>
+<el-col :span="2">
+<span>订单号:</span>
+</el-col>
+<el-col :span="4">
+<el-input placeholder="多搜索英文逗号隔开" v-model="input.s_order_no"></el-input>
+</el-col>
+</div>
+<div>
+<el-col :span="2">
+<span>海外仓发货批次号:</span>
+</el-col>
+<el-col :span="4">
+<el-input placeholder="模糊搜索" v-model="input.s_deliver_no"></el-input>
+</el-col>
+</div>
+<div>
+<el-col :span="2">
+<span>组包号:</span>
+</el-col>
+<el-col :span="4">
+<el-input placeholder="模糊搜索" v-model="input.s_zb_no"></el-input>
+</el-col>
+</div>
+</el-col>
+</el-row>
+</div><div id="temp_table">
+<el-table :data="table_data" border="" stripe="">
+<el-table-column :key="index" :label="item.field_name_cn" :prop="item.field_name_en" align="left" v-for="(item, index) in table_header">
+</el-table-column>
+<el-table-column label="操作">
+<template slot-scope="scope">
+<el-button @click="" size="medium" type="text">详情</el-button>
+<el-button @click="" size="medium" type="text">编辑</el-button>
+</template>
+</el-table-column>
+</el-table>
+</div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "test_page",
+  data() {
+    return { 
+      input: {
+        s_order_no: '',
+        s_deliver_no: '',
+        s_zb_no: '',
+      },
+      table_header: [{'field_name_cn': '英文名', 'field_name_en': 'class_name'}, {'field_name_cn': '中文名', 'field_name_en': 'class_desc'}, {'field_name_cn': '类型', 'field_name_en': 'type'}, {'field_name_cn': '注释', 'field_name_en': 'class_detail'}],
+      table_data: [{'id': 1, 'class_name': 'a_function_points', 'class_desc': '功能点列表', 'class_detail': '任务主线表中的功能点列表', 'type': 'o_function_points[ ]'}, {'id': 2, 'class_name': 's_function_points', 'class_desc': '功能点', 'class_detail': '任务主线表中的需求功能点', 'type': 'String'}],
+    }
+  },
+  methods: { 
+    query_list() {
+
+    },
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
+  </div>
+
+
+
+</body>
+  <!-- import Vue before Element -->
+  <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { visible: false }
+      }
+    })
+  </script>
+</html>

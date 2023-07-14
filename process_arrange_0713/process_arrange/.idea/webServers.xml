@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e4352ae7-2c58-455e-b690-11fdc321dc93" name="本地svn" url="http://localhost">
+        <fileTransfer mountedRoot="F:\code\code_svn\func_process_app" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>

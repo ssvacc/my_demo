@@ -1,0 +1,17 @@
+<hqTemplate>    <el-input-number size="medium" style="width:200px" v-model="{{ field_name_en }}"{% if disabled_condition %} :disabled="{{ disabled_condition }}"{% endif %}></el-input-number>
+</hqTemplate>
+<script>
+export default {
+  data() {
+    return {<hqData>{% if repeat_field_name_en %}{% else %}
+      {{ field_name_en }}: {{ field_default_value|safe }},{% endif %}</hqData>
+    }
+  },
+}
+</script>
+{# 必填配置项
+{"field_name_en": "","field_default_value": "","field_data_type":"Int"}
+#}
+{# 选填配置项
+{"disabled_condition":""}
+#}

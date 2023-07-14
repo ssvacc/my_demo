@@ -1,0 +1,9 @@
+template: "",
+data() {
+  return {
+
+  }
+},
+methods: {
+
+}

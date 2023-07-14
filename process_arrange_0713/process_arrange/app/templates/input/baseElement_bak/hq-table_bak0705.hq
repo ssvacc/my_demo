@@ -1,0 +1,68 @@
+<hqTemplate>    <div id="{{ table_id }}">
+      <el-table border :data="table_data" stripe @selection-change="handleSelectionChange">
+        <el-table-column type="selection" width="55">
+        </el-table-column>{% if show_index %}
+        <el-table-column type="index" label="序号">
+        </el-table-column>{% endif %}
+        <el-table-column
+          v-for="(item, index) in table_header"
+          :label="item.field_name_cn"
+          :key="index"
+          :prop="item.field_name_en"
+          align="left">
+        </el-table-column>
+      </el-table>
+    </div>
+</hqTemplate>
+<script>
+export default {
+  <hqLifeCycle>created() {<hqCreated>
+    this.{{ js_function_name }}();</hqCreated>
+  },</hqLifeCycle>
+  data() {
+    return {<hqData>
+      multipleSelection: [],
+      multipleSelectionIds: [],
+      table_header: {{ table_header|safe }},
+      table_data: [],</hqData>
+    }
+  },
+  methods: {<hqMethods>
+    handleSelectionChange(rows) {
+      this.multipleSelection = rows;
+      this.multipleSelectionIds = rows.map(row => {return row.id})
+    },
+    {% if async %}async {% endif %}{{ js_function_name }}({% if js_function_param %}{{ js_function_param }}{% endif %}) {
+      let query = ''
+      {% if show_page %}query += '?page_no=' + this.pageNo + '&page_size=' + this.pageSize {% endif %}{% for field in query_field_list %}{% if field.field_name_en %}
+      if ({% if field.using_condition %}{{ field.using_condition|safe }}{% else %}this.{{ field.field_name_en }}{% ifequal field.data_type 'Int' %} !== null{% endifequal%}{% ifequal field.data_type 'Float' %} !== null{% endifequal%}{% endif %}) {
+        query += '&{{ field.field_name_en }}='+ this.{{ field.field_name_en }}
+      }{% endif %}{% endfor %}{% if custom_query_condition %}query += {{custom_query_condition}} {% endif %}
+      const {data: result} = await this.$axios.get('{{ query_url }}' + query);
+      if (result.code !== 0) {
+        this.$message.error(result.msg);
+      } else {
+        {% if show_page %}this.table_data = result.data.data;
+        this.total = result.data.total;{% else %}this.table_data = result.data;{% endif %}
+      }
+    },</hqMethods>
+  },
+}
+</script>
+<style><hqStyle>
+#{{ table_id }} {
+  padding: 20px;
+}
+#{{table_id}} .el-table__header {
+  width: 100% !important;
+}
+#{{table_id}} .el-table__body {
+  width: 100% !important;
+}</hqStyle>
+</style>
+{# 必填配置项
+{"element":"hq-table","element_key":"uuid","page_area":"hqDataArea","table_id":"","table_header":[""],"js_function_name":"","query_field_list":[{"data_type":"Int"}],"custom_query_condition":"","query_url":""}
+#}
+{# 选填配置项
+{"show_index":"","async":"","js_function_param":"","show_page":"","query_field_list":[{"field_name_en":"","using_condition":""}]}
+#}

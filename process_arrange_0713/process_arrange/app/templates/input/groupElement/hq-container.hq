@@ -1,0 +1,16 @@
+<hqTemplate>{% for sub_element in sub_elements %}
+    <el-row :gutter="20" class="select_row">{% for sub in sub_element.sub_elements %}
+      <el-col :span="{{ sub.span }}">
+        {{ sub.element_key }}
+      </el-col>{% endfor %}
+    </el-row>{% endfor %}
+</hqTemplate>
+<style scoped><hqStyle>
+.select_row {
+  margin-bottom: 10px;
+}</hqStyle>
+</style>
+{# 容器只重新渲染template部分，渲染之后移除template区中用到的组件，使用该模板渲染后的内容 #}
+{# 必填配置项
+{"sub_elements":[{"sub_elements":[{"element":"组件名","element_key":"uuid","page_area":"hqSelectArea","span":""}]}]}
+#}

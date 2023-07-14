@@ -1,0 +1,54 @@
+<hqTemplate>
+    <div class="block" style="width: 520px">
+      <el-col style="text-align: right" :span="5">
+        <span class="demonstration">{{ field_name_cn }}:</span>
+      </el-col>
+      <el-col style="text-align: left" :span="19">
+        <div style="margin-left: 10px">
+          <el-date-picker v-model="{{ field_name_en }}" size="small" value-format="yyyy-MM-dd" type="daterange" align="right" unlink-panels range-separator="至"
+                          start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="{{ field_name_en }}_picker_options">
+          </el-date-picker>
+        </div>
+      </el-col>
+    </div>
+</hqTemplate>
+
+<script>
+export default {
+  data() {
+    return {<hqData>
+      {{ field_name_en }}: '',
+      {{ field_name_en }}_picker_options: {
+        shortcuts: [{
+          text: '最近7天',
+          onClick(picker) {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+            picker.$emit('pick', [start, end]);
+          }
+        }, {
+          text: '最近15天',
+          onClick(picker) {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 15);
+            picker.$emit('pick', [start, end]);
+          }
+        }, {
+          text: '最近30天',
+          onClick(picker) {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+            picker.$emit('pick', [start, end]);
+          }
+        }]
+      },</hqData>
+    };
+  }
+};
+</script>
+{# 模板必填配置项
+{"field_name_en": "","field_name_cn": ""}
+#}

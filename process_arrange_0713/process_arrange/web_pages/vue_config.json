@@ -1,0 +1,41 @@
+{
+  "name": "TABS",
+  "children": [
+    {
+      "name": "BADGE",
+      "value": 0,
+      "class": "",
+      "children": [{
+        "name": {
+          "name": "TAB",
+          "label": "ASIN/Item_ID备货建议",
+          "text": "ASIN/Item_ID备货建议"
+        }
+      }]
+    },
+    {
+      "name": "BADGE",
+      "value": 64,
+      "class": "",
+      "children": [{
+        "name": {
+          "name": "TAB",
+          "label": "备货需求",
+          "text": "备货需求"
+        }
+      }]
+    },
+    {
+      "name": "BADGE",
+      "value": 109,
+      "class": "",
+      "children": [{
+        "name": {
+          "name": "TAB",
+          "label": "备货审核",
+          "text": "备货审核"
+        }
+      }]
+    }
+  ]
+}

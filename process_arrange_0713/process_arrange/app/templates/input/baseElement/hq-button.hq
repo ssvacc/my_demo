@@ -1,0 +1,9 @@
+<hqTemplate>    <el-button size="medium" @click="{{ js_function_name }}"{% if button_type %} type="{{ button_type }}"{% endif %}{% if disabled_condition %} :disabled="{{ disabled_condition }}"{% endif %}>{{ content }}</el-button>
+</hqTemplate>
+{# 必填配置项
+{"content":"","js_function_name":""}
+#}
+{# 选填配置项
+{"button_type":"primary","disabled_condition":""}
+#}
+

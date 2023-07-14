@@ -1,0 +1,19 @@
+<hqTemplate>    <el-input size="medium" style="width:300px" clearable class="input-with-select" placeholder="请输入{{ field_name_cn }}" v-model="{{ field_name_en }}"{% if disabled_condition %} :disabled="{{ disabled_condition }}"{% endif %}{% if show_password %} show-password{% endif %}>
+      <el-button slot="append" icon="el-icon-search" @click="{{ js_function_name }}"></el-button>
+    </el-input>
+</hqTemplate>
+<script>
+export default {
+  data() {
+    return {<hqData>{% if repeat_field_name_en %}{% else %}
+      {{ field_name_en }}: {{ field_default_value|safe }},{% endif %}</hqData>
+    }
+  },
+}
+</script>
+{# 必填配置项
+{"field_name_en": "","field_name_cn": "","field_default_value": "","js_function_name":"","field_data_type":"String"}
+#}
+{# 选填配置项
+{"disabled_condition":"","show_password":""}
+#}

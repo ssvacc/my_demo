@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="本地svn" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="niheng@106.15.224.155:22 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/niheng/0418" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="本地svn">
+        <serverdata>
+          <mappings>
+            <mapping deploy="\" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

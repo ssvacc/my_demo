@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>页面配置</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="../favicon.ico">
+</head>
+<body>
+    <h2>报告综述</h2>
+    <p>巡检地点 : 机房&nbsp;&nbsp;开始时间 : {{ start_time }}&nbsp;&nbsp;结束时间 : {{ stop_time }} </p>
+    <p>检测结果 : ***&nbsp;&nbsp;其它信息：***</p>
+    <h2>详细信息</h2>
+    <table border="1" width="40%" cellspacing='0' cellpadding='0' align='left'>
+        <tr>
+            {% for item in head %}
+            <th>{{ item }}</th>
+            {% endfor %}
+            <th>操作</th>
+        </tr>
+        {% for item in body %}
+            <tr align='center'>
+                {% for hd in head %}
+                <td>{{ loop.index0 }}</td>
+                {% endfor %}
+                <td>编辑</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

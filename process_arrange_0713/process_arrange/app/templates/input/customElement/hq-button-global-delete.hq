@@ -1,0 +1,41 @@
+<hqTemplate>    <el-button size="medium" @click="confirm_{{ js_function_name }}" type="danger"{% if disabled_condition %} :disabled="{{ disabled_condition }}"{% endif %}>{{ content }}</el-button>
+</hqTemplate>
+<script>
+export default {
+  methods: {<hqMethods>
+    confirm_{{ js_function_name }}() {
+      if (this.multipleSelectionIds.length === 0) {
+        this.$message.info('请选择要删除的数据!');
+        return;
+      }
+      this.$confirm('确定删除选中的内容吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.{{ js_function_name }}()
+      })
+    },
+    async {{ js_function_name }}() {
+      if (this.multipleSelectionIds.length === 0) {
+        this.$message.info('请选择要删除的数据!');
+        return;
+      }
+      let request_data = { {{ field_name_en }}: this.multipleSelectionIds }
+      const {data: result} = await this.$axios.post('{{ delete_url }}', request_data);
+      if (result.code !== 0) {
+        this.$message.error(result.msg);
+      } else {
+        this.$message.success(result.msg);
+      }
+      this.{{ js_list_function_name }}();
+    },</hqMethods>
+  },
+}
+</script>
+{# 必填配置项
+{"content":"","js_function_name":"","js_list_function_name":"","field_name_en":"","delete_url":""}
+#}
+{# 选填配置项
+{"disabled_condition":""}
+#}

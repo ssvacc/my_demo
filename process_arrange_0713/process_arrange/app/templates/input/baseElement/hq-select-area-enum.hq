@@ -1,0 +1,78 @@
+<hqTemplate>
+    <div style="width: 520px">
+      <el-col style="text-align: right" :span="5">
+        <span>{{ field_name_cn }}:</span>
+      </el-col>
+      <el-col style="text-align: left" :span="19">
+        <div style="margin-left: 10px">
+          <el-select v-model="{{ field_name_en }}" filterable size="small" multiple style="width: 240px"
+                 @visible-change="changedEnumOptions($event, '{{ field_name_en }}')"
+                 @change="$forceUpdate()">
+            <ul class="infinite-list" style="overflow:auto">
+              <li>
+                <el-option disabled value="">
+                  <span style="float: left;">key</span>
+                  <span style="float: left;margin-right: 20px"></span>
+                  <span style="float: right;color: #3a87ad">value</span>
+                </el-option>
+              </li>
+              {% verbatim %}<li v-for="item in enumOptions" class="infinite-list-item">
+                <el-option :label="item.label" :value="item.value">
+                  <span style="float: left;">{{ item.value }}</span>
+                  <span style="float: left;margin-right: 20px"></span>
+                  <span style="float: right;color: #3a87ad">{{ item.label }}</span>
+                </el-option>
+              </li>{% endverbatim %}
+            </ul>
+          </el-select>
+        </div>
+      </el-col>
+    </div>
+</hqTemplate>
+
+<script>
+export default {
+  data() {
+    return {<hqData>
+      {{ field_name_en }}: null,<hqDistinct>
+      enumOptions: [],
+      enumOptionsMap: new Map(),</hqDistinct></hqData>
+    }
+  },
+  methods: {<hqMethods><hqDistinct>
+    // 下拉框改变
+    changedEnumOptions(callback, s_enum_name) {
+      if (callback) {
+        this.getEnumOptions(s_enum_name)
+      } else {
+        this.enumOptions = []
+      }
+    },
+    // 获取下拉框数据
+    getEnumOptions(s_enum_name) {
+      // 从缓存获取
+      if (this.enumOptionsMap.has(s_enum_name)) {
+        this.enumOptions = this.enumOptionsMap.get(s_enum_name)
+      } else {
+        this.queryEnumOptions(s_enum_name)
+      }
+    },
+    // 从后台获取
+    async queryEnumOptions(s_enum_name) {
+      var query = '?s_enum_name=' + s_enum_name
+      const {data: result} = await this.$axios.get(GET_ENUM_OPTIONS + query);
+      if (result.code != 0) {
+        this.$message.error(result.msg);
+      } else {
+        this.enumOptions = result.data.a_enum_option.map(item => {
+          return {value: item.s_enum_key, label: item.s_enum_value}
+        })
+        this.enumOptionsMap.set(s_enum_name, this.enumOptions)
+      }
+    },</hqDistinct></hqMethods>
+  }
+};
+</script>
+{# 模板必填配置项
+{"field_name_en": "","field_name_cn": ""}
+#}

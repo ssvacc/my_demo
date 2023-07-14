@@ -1,0 +1,22 @@
+<hqTemplate>    <el-select size="medium" style="width:200px" v-model="{{ field_name_en }}" placeholder="请选择" clearable>
+      <el-option v-for="item in {{ options_name }}" :key="item.value" :label="item.label" :value="item.value" {% if item.disabled %}:disabled="item.disabled"{% endif %}>
+      </el-option>
+    </el-select>
+</hqTemplate>
+<script>
+export default {
+data() {
+  return {<hqData>
+      {{ options_name }}: [{% for option in options %}
+        { value: {{ option.value|safe }}, label: {{ option.label|safe }}{% if option.disabled %}, disabled: true{% endif %} },{% endfor %}],{% if repeat_field_name_en %}{% else %}
+      {{ field_name_en }}: {{ field_default_value|safe }},{% endif %}</hqData>
+  }
+},
+</script>
+{# 可以动态查询下拉框显示内容（待开发：页面调用后端接口实时查询下拉选项（放一个缓存区变量）） 已优化，参考hq- #}
+{# 必填配置项
+{"field_name_en":"","field_default_value":"","options_name":[{"value":"","label":""}]}
+#}
+{# 选填配置项
+{"options_name":[{"disabled":""}]}
+#}

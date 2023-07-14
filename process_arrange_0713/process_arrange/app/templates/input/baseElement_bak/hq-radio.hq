@@ -1,0 +1,15 @@
+<hqTemplate>    <el-radio-group v-model="{{ field_name_en }}" size="medium">{% for option in radio_options %}
+      <el-radio-button :label={{ option.key }}>{{ option.label }}</el-radio-button>{% endfor %}
+    </el-radio-group>
+</hqTemplate>
+<script>
+export default {
+data() {
+  return {<hqData>{% if repeat_field_name_en %}{% else %}
+      {{ field_name_en }}: {{ field_default_value|safe }},{% endif %}</hqData>
+  }
+},
+</script>
+{# 必填配置项
+{"field_name_en": "","field_default_value": "","radio_options": [{"key":"","label":""}]}
+#}

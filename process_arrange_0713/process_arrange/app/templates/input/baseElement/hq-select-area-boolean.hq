@@ -1,0 +1,29 @@
+<hqTemplate>
+    <div style="width: 520px">
+      <el-col style="text-align: right" :span="5">
+        <span>{{ field_name_cn }}:</span>
+      </el-col>
+      <el-col style="text-align: left" :span="19">
+        <div style="margin-left: 10px">
+          <el-select size="small" style="width:140px" v-model="{{ field_name_en }}" clearable>
+            <el-option v-for="item in {{ field_name_en }}_options" :key="item.value" :label="item.label" :value="item.value" :disabled="item.disabled">
+            </el-option>
+          </el-select>
+        </div>
+      </el-col>
+    </div>
+</hqTemplate>
+
+<script>
+export default {
+  data() {
+    return {<hqData>
+      {{ field_name_en }}: null,
+      {{ field_name_en }}_options: [{value: null, label: '全部'}, {value: true, label: '是'}, {value: false, label: '否'}],</hqData>
+    }
+  }
+};
+</script>
+{# 模板必填配置项
+{"field_name_en": "","field_name_cn": ""}
+#}

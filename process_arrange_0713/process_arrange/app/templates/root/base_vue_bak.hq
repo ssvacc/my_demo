@@ -1,0 +1,37 @@
+<template>
+  <div id="{{ ele.page_id|safe }}">
+{{ ele.hqTemplate|safe }}  </div>
+</template>
+
+<script>
+export default {
+  name: "{{ ele.page_code|safe }}",
+  data() {
+    return { {{ ele.hqData|safe }}
+    }
+  },{% if ele.hqLifeCycle %}{% if ele.hqBeforeCreate %}
+  beforeCreate() { {{ ele.hqBeforeCreate|safe }}
+  },{% endif %}{% if ele.hqCreated %}
+  created() { {{ ele.hqCreated|safe }}
+  },{% endif %}{% if ele.hqBeforeMount %}
+  beforeMount() { {{ ele.hqBeforeMount|safe }}
+  },{% endif %}{% if ele.hqMounted %}
+  mounted() { {{ ele.hqMounted|safe }}
+  },{% endif %}{% if ele.hqBeforeUpdate %}
+  beforeUpdate() { {{ ele.hqBeforeUpdate|safe }}
+  },{% endif %}{% if ele.hqUpdated %}
+  updated() { {{ ele.hqUpdated|safe }}
+  },{% endif %}{% if ele.hqBeforeUnmount %}
+  beforeUnmount() { {{ ele.hqBeforeUnmount|safe }}
+  },{% endif %}{% if ele.hqUnmounted %}
+  unmounted() { {{ ele.hqUnmounted|safe }}
+  },{% endif %}{% if ele.hqErrorCaptured %}
+  errorCaptured() { {{ ele.hqErrorCaptured|safe }}
+  },{% endif %}{% endif %}
+  methods: { {{ ele.hqMethods|safe }}
+  }
+}
+</script>
+
+<style scoped>{{ ele.hqStyle|safe }}
+</style>

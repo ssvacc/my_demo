@@ -1,0 +1,14 @@
+<hqTemplate>{% for sub_element in sub_elements %}
+    <el-row type="flex" justify="space-around" class="select_row">{% for sub in sub_element.sub_elements %}
+      <el-col :span="7">
+        {{ sub.element_key }}      </el-col>{% endfor %}
+    </el-row>{% endfor %}</hqTemplate>
+<style scoped><hqStyle>
+.select_row {
+  margin-bottom: 10px;
+}</hqStyle>
+</style>
+{# 只用在搜索区的容器 #}
+{# 必填配置项
+{"sub_elements":[{"sub_elements":[{"element":"组件名","element_key":"uuid","page_area":"hqSelectArea"}]}]}
+#}

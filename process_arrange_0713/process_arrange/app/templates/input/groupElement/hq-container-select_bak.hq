@@ -1,0 +1,30 @@
+<hqTemplate>{% for sub_element in sub_elements %}
+    <el-row :gutter="20" class="select_row">{% for sub in sub_element.sub_elements %}
+      <el-col :span="8">
+        <el-col class="col_left" :span="9">
+      {% if sub.sub_elements.0.element_key %}{{ sub.sub_elements.0.element_key }}{% endif %}        </el-col>
+        <el-col class="col_right" :span="15">
+      {% if sub.sub_elements.1.element_key %}{{ sub.sub_elements.1.element_key }}{% endif %}        </el-col>
+      </el-col>{% endfor %}
+    </el-row>{% endfor %}
+</hqTemplate>
+<style scoped><hqStyle>
+.select_row {
+  margin-bottom: 10px;
+}
+.col_left {
+  text-align: right;
+}
+.col_right {
+  text-align: left;
+}</hqStyle>
+</style>
+{# 最初版容器，废弃 #}
+{# 容器只重新渲染template部分，渲染之后移除template区中用到的组件，使用该模板渲染后的内容 #}
+{# 必填配置项
+{"element":"hq-container-select","element_key":"uuid","page_area":"hqSelectArea","sub_elements":[{"sub_elements":[{"sub_elements":[{"element":"组件名","element_key":"uuid","page_area":"hqSelectArea"}]}]}]}
+#}
+
+
+
+

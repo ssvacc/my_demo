@@ -1,0 +1,29 @@
+<hqTemplate>    <div style="width: 520px">
+      <el-col style="text-align: right" :span="5">
+        <div>{{ field_name_cn }}:</div>
+      </el-col>
+      <el-col style="text-align: left" :span="19">
+        <div>
+          <el-input-number v-model="{{ field_name_en }}_start" size="small" :precision="2" :step="0.01" {% if placeholder_start %}placeholder="{{ placeholder_start }}"{% endif %} :controls="false" style="width: 140px;margin-left: 10px;"></el-input-number>
+          <span>-</span>
+          <el-input-number v-model="{{ field_name_en }}_end" :precision="2" :step="0.01" size="small" {% if placeholder_end %}placeholder="{{ placeholder_end }}"{% endif %} :controls="false" style="width: 140px;"></el-input-number>
+        </div>
+      </el-col>
+    </div>
+</hqTemplate>
+<script>
+export default {
+  data() {
+    return {<hqData>
+      {{ field_name_en }}_start: null,
+      {{ field_name_en }}_end: null,</hqData>
+  }
+  },
+}
+</script>
+{# 模板必填配置项
+{"field_name_en": "","field_name_cn": ""}
+#}
+{# 模板选填配置项
+{"placeholder_start":"","placeholder_end": ""}
+#}
